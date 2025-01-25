@@ -27,7 +27,7 @@ const Contact = () => {
       };
 
       await emailjs.send(
-        'default_service', // Your EmailJS service ID
+        'service_pf1megc', // Your EmailJS service ID
         'template_ox3xq8p', // Your template ID
         templateParams
       );
