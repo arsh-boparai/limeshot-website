@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import emailjs from '@emailjs/browser';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 
 function App() {
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init("h5y1lHlzO7O4mXQB-");
+  }, []);
+
   return (
     <>
       <Helmet>

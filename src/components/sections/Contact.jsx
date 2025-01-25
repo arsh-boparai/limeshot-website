@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Send, Mail, Phone, MapPin } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,10 +9,50 @@ const Contact = () => {
     phone: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setLoading(true);
+    setStatus({ type: '', message: '' });
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        to_name: 'Limeshot Digital',
+      };
+
+      await emailjs.send(
+        'default_service', // Your EmailJS service ID
+        'template_ox3xq8p', // Your template ID
+        templateParams
+      );
+
+      setStatus({
+        type: 'success',
+        message: 'Thank you for your message! We will get back to you soon.'
+      });
+      
+      // Clear form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Email error:', error);
+      setStatus({
+        type: 'error',
+        message: 'Oops! Something went wrong. Please try again later.'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -39,7 +80,7 @@ const Contact = () => {
                 <Mail className="w-6 h-6 text-primary-500 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">contact@limeshotdogital.com</p>
+                  <p className="text-gray-600">contact@limeshotdigital.com</p>
                 </div>
               </div>
               
@@ -66,6 +107,16 @@ const Contact = () => {
           </div>
 
           <div className="bg-white p-8 rounded-lg shadow-lg">
+            {status.message && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                status.type === 'success' 
+                  ? 'bg-green-50 text-green-700 border border-green-200'
+                  : 'bg-red-50 text-red-700 border border-red-200'
+              }`}>
+                {status.message}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="form-label">Full Name</label>
@@ -120,10 +171,13 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="btn-primary w-full"
+                disabled={loading}
+                className={`btn-primary w-full flex items-center justify-center ${
+                  loading ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
-                Send Message
-                <Send className="ml-2 h-4 w-4" />
+                {loading ? 'Sending...' : 'Send Message'}
+                {!loading && <Send className="ml-2 h-4 w-4" />}
               </button>
             </form>
           </div>
