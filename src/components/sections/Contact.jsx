@@ -23,32 +23,37 @@ const Contact = () => {
         from_email: formData.email,
         phone: formData.phone,
         message: formData.message,
-        to_name: 'Limeshot Digital',
+        to_name: 'Limeshot Digital'
       };
 
-      await emailjs.send(
-        'service_pf1megc', // Your EmailJS service ID
+      const response = await emailjs.send(
+        'service_pf1megc',  // Your updated service ID
         'template_ox3xq8p', // Your template ID
-        templateParams
+        templateParams,
+        'h5y1lHlzO7O4mXQB-' // Your public key
       );
 
-      setStatus({
-        type: 'success',
-        message: 'Thank you for your message! We will get back to you soon.'
-      });
-      
-      // Clear form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-      });
+      if (response.status === 200) {
+        setStatus({
+          type: 'success',
+          message: 'Thank you for your message! We will get back to you soon.'
+        });
+        
+        // Clear form on success
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
       console.error('Email error:', error);
       setStatus({
         type: 'error',
-        message: 'Oops! Something went wrong. Please try again later.'
+        message: 'Oops! Something went wrong. Please try again later or contact us directly at contact@limeshotdigital.com'
       });
     } finally {
       setLoading(false);
@@ -56,9 +61,10 @@ const Contact = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value.trim()
     }));
   };
 
@@ -108,12 +114,14 @@ const Contact = () => {
 
           <div className="bg-white p-8 rounded-lg shadow-lg">
             {status.message && (
-              <div className={`mb-6 p-4 rounded-lg ${
-                status.type === 'success' 
-                  ? 'bg-green-50 text-green-700 border border-green-200'
-                  : 'bg-red-50 text-red-700 border border-red-200'
-              }`}>
-                {status.message}
+              <div 
+                className={`mb-6 p-4 rounded-lg flex items-start ${
+                  status.type === 'success' 
+                    ? 'bg-green-50 text-green-700 border border-green-200'
+                    : 'bg-red-50 text-red-700 border border-red-200'
+                }`}
+              >
+                <span className="flex-grow">{status.message}</span>
               </div>
             )}
 
@@ -128,6 +136,7 @@ const Contact = () => {
                   onChange={handleChange}
                   className="form-input"
                   required
+                  minLength={2}
                 />
               </div>
               
@@ -153,6 +162,7 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="form-input"
+                  pattern="[0-9\-\+\s\(\)]*"
                 />
               </div>
 
@@ -166,6 +176,7 @@ const Contact = () => {
                   rows="4"
                   className="form-input"
                   required
+                  minLength={10}
                 ></textarea>
               </div>
 
