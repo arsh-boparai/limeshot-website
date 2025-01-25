@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { ArrowUp } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +20,7 @@ const Layout = ({ children }) => {
         e.preventDefault();
         const element = document.querySelector(href);
         if (element) {
-          const navbarHeight = 64; // Adjust this value based on your navbar height
+          const navbarHeight = 64;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
 
@@ -29,11 +32,13 @@ const Layout = ({ children }) => {
       }
     };
 
+    // Scroll handlers
     window.addEventListener('scroll', handleScroll);
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', handleHashClick);
     });
 
+    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -41,6 +46,13 @@ const Layout = ({ children }) => {
       });
     };
   }, []);
+
+  // Scroll to top when navigating between routes
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -50,10 +62,10 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
-      <main className="flex-grow">
-        {children}
+      <main className={`flex-grow ${!isHomePage ? 'pt-20' : ''}`}>
+        {children || <Outlet />}
       </main>
       <Footer />
 
@@ -62,7 +74,7 @@ const Layout = ({ children }) => {
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 bg-primary-500 text-white p-3 rounded-full 
                    shadow-lg transition-all duration-300 hover:bg-primary-600 
-                   hover:shadow-xl transform hover:scale-110 ${
+                   hover:shadow-xl transform hover:scale-110 z-50 ${
                      showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
                    }`}
         aria-label="Scroll to top"

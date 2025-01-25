@@ -1,71 +1,43 @@
-import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
-import Hero from './components/sections/Hero';
-import Services from './components/sections/Services';
-import About from './components/sections/About';
-import Contact from './components/sections/Contact';
-import { Helmet } from 'react-helmet';
+import HomePage from './pages/HomePage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
-  // Update scroll position on hash change
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    };
-
-    // Handle initial hash if present
-    handleHashChange();
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
   return (
     <>
       <Helmet>
-        <title>Limeshot Digital Solutions | Web, Mobile & AI Services</title>
-        <meta name="description" content="Transform your business with Limeshot Digital Solutions. Expert web development, mobile apps, and AI-driven marketing services. 5+ years of digital excellence." />
-        
-        {/* Open Graph / Social Media Meta Tags */}
+        <title>Limeshot Digital Solutions | Enterprise Software Development</title>
+        <meta 
+          name="description" 
+          content="Transform your enterprise with custom software solutions. Specializing in web development, cloud architecture, AI integration, and digital transformation." 
+        />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Limeshot Digital Solutions | Digital Transformation Experts" />
-        <meta property="og:description" content="Transform your business with our expert web development, mobile apps, and AI-driven solutions. 5+ years of digital excellence." />
+        <meta property="og:title" content="Limeshot Digital Solutions | Enterprise Software Development" />
+        <meta 
+          property="og:description" 
+          content="Enterprise-grade software development solutions for digital transformation. Experts in custom development, cloud architecture, and AI integration." 
+        />
         <meta property="og:site_name" content="Limeshot Digital Solutions" />
-        
-        {/* Keywords and additional SEO meta tags */}
-        <meta name="keywords" content="web development, mobile apps, AI solutions, digital transformation, custom software, digital marketing, tech solutions" />
+        <meta 
+          name="keywords" 
+          content="enterprise software, custom development, cloud solutions, AI integration, digital transformation, web development, mobile apps, cybersecurity" 
+        />
         <meta name="author" content="Limeshot Digital Solutions" />
-        
-        {/* Viewport and other technical meta tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#84cc16" />
-        
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://limeshot.com" />
+        <meta name="theme-color" content="#0ea5e9" />
+        <link rel="canonical" href="https://limeshotdigital.com" />
       </Helmet>
 
-      <Layout>
-        <main className="overflow-hidden">
-          {/* Hero Section */}
-          <Hero />
-
-          {/* Services Section - What we offer */}
-          <Services />
-
-          {/* About Section - Our story and achievements */}
-          <About />
-
-          {/* Contact Section - Get in touch */}
-          <Contact />
-        </main>
-      </Layout>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+        </Route>
+      </Routes>
     </>
   );
 }
