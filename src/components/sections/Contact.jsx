@@ -23,7 +23,7 @@ const Contact = () => {
         from_email: formData.email,
         phone: formData.phone,
         message: formData.message,
-        to_name: 'Limeshot Digital'
+        to_name: 'Limeshot Digital Solutions'
       };
 
       const response = await emailjs.send(

@@ -7,7 +7,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const COMPANY = {
-    name: 'Limeshot Digital',
+    name: 'Limeshot Digital Solutions',
     email: 'contact@limeshotdigital.com',
     phone: '+1 (647) 967-1672',
     social: [
