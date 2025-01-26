@@ -68,13 +68,14 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center relative z-50">
-              <Logo className="h-8" />
+              <Logo className="h-12" />
             </Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((item, index) => (
                 <div 
+                
                   key={index} 
                   className="relative group"
                   onMouseEnter={() => setActiveDropdown(index)}

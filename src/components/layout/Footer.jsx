@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import Logo from '../ui/Logo';
-import { MailIcon, Phone, MapPin, Github, Linkedin, Facebook } from 'lucide-react';
+import Logo from '../ui/Logo-white';
+import { MailIcon, Phone, MapPin, Github, Linkedin, Facebook, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 const Footer = () => {
   const footerRef = useRef(null);
@@ -37,11 +37,11 @@ const Footer = () => {
     <footer ref={footerRef} className="bg-gray-900">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
           <Link to="/" className="inline-block">
-            <Logo className="h-8 mb-6" variant="light" />
+            <Logo className="h-12 mb-6" variant="light" />
             </Link>
             <p className="text-gray-400 mb-8 leading-relaxed">
               Enterprise-grade software development solutions that transform businesses. 
@@ -81,7 +81,7 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
+          {/* <div>
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-3">
               {resources.map((resource) => (
@@ -92,7 +92,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact Info */}
           <div>
@@ -101,7 +101,7 @@ const Footer = () => {
               <li>
                 <a href={`mailto:${COMPANY.email}`} 
                    className="flex items-start text-gray-400 hover:text-primary-400 transition-colors group">
-                  <MailIcon className="w-5 h-5 mr-2 mt-1 group-hover:text-primary-400" />
+                  <Mail className="w-5 h-5 mr-2 mt-1 group-hover:text-primary-400" />
                   <span>{COMPANY.email}</span>
                 </a>
               </li>
@@ -137,9 +137,7 @@ const Footer = () => {
               <a href="/terms" className="text-gray-400 hover:text-primary-400 transition-colors">
                 Terms of Service
               </a>
-              <a href="/security" className="text-gray-400 hover:text-primary-400 transition-colors">
-                Security
-              </a>
+              
             </div>
           </div>
         </div>

@@ -4,8 +4,8 @@ import { ArrowRight, Code, Rocket, Shield } from 'lucide-react';
 const Hero = () => {
   const stats = [
     { value: '98%', label: 'Success Rate' },
-    { value: '200+', label: 'Solutions Delivered' },
-    { value: '40+', label: 'Enterprise Clients' },
+    { value: '50+', label: 'Solutions Delivered' },
+    { value: '10+', label: 'Enterprise Clients' },
     { value: '24/7', label: 'Technical Support' }
   ];
 
