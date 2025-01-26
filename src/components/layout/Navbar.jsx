@@ -52,11 +52,14 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Spacer div to prevent content overlap */}
+      <div className="h-14 md:h-20" />
+      
       {/* Mobile Navbar */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-white z-50">
         <div className="flex items-center justify-between h-14 px-4">
           <Link to="/" className="flex items-center relative z-[60]">
-            <Logo className="h-12" />
+            <Logo className="h-7" />
           </Link>
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -133,11 +136,13 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Navbar */}
-      <nav className="hidden md:block fixed w-full z-50">
+      <nav className={`hidden md:block fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
+        isScrolled ? 'shadow-md' : ''
+      }`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center">
-              <Logo className="h-16" />
+              <Logo className="h-12" />
             </Link>
             
             <div className="flex items-center space-x-8">
