@@ -6,7 +6,7 @@ import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
-
+import LocalFlowWidget from './components/ui/LocalFlowWidget';
 function App() {
   useEffect(() => {
     // Initialize EmailJS with your public key
@@ -45,6 +45,8 @@ function App() {
           <Route path="/terms" element={<TermsOfService />} />
         </Route>
       </Routes>
+      <LocalFlowWidget />
+
     </>
   );
 }
