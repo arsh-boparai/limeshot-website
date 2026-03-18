@@ -1,143 +1,128 @@
-import { useEffect, useRef } from 'react';
 import Logo from '../ui/Logo-white';
-import { MailIcon, Phone, MapPin, Github, Linkedin, Facebook, Mail } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { COMPANY } from '../../utils/constant';
+
 const Footer = () => {
-  const footerRef = useRef(null);
   const currentYear = new Date().getFullYear();
 
-  const COMPANY = {
-    name: 'Limeshot Digital Solutions',
-    email: 'contact@limeshotdigital.com',
-    phone: '+1 (647) 967-1672',
-    social: [
-      { platform: 'LinkedIn', url: 'https://linkedin.com/company/limeshotdigital', icon: Linkedin },
-      { platform: 'GitHub', url: 'https://github.com/limeshotdigital', icon: Github },
-      { platform: 'Facebook', url: 'https://facebook.com/limeshotdigital', icon: Facebook }
-    ]
-  };
-
-  const services = [
-    'Software Development',
-    'Cloud Solutions',
-    'Mobile App Development',
-    'AI & Machine Learning',
+  const quickLinks = [
+    { to: '/services', label: 'Services' },
+    { to: '/work', label: 'Work' },
+    { to: '/about', label: 'About' },
+    { to: '/contact', label: 'Contact' },
   ];
 
-  const resources = [
-    'Documentation',
-    'API Reference',
-    'Tech Stack',
-    'System Architecture',
-    'Case Studies',
-    'Client Portal'
+  const services = [
+    'React & React Native Dev',
+    'AI & Agent Integration',
+    'Web & Mobile Development',
   ];
 
   return (
-    <footer ref={footerRef} className="bg-gray-900">
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-          <Link to="/" className="inline-block">
-            <Logo className="h-12 mb-6" variant="light" />
+    <footer className="bg-carbon-950 border-t border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+          {/* Brand */}
+          <div>
+            <Link to="/" className="inline-block mb-6">
+              <Logo className="h-9" />
             </Link>
-            <p className="text-gray-400 mb-8 leading-relaxed">
-              Enterprise-grade software development solutions that transform businesses. 
-              Specializing in custom development, cloud architecture, and AI integration 
-              with a focus on scalability and security.
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Senior technical consultant specialising in React, React Native,
+              and AI integration. I build production-grade applications that ship
+              on time and scale with your business.
             </p>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {COMPANY.social.map(({ platform, url, icon: Icon }) => (
-                <a
-                  key={platform}
-                  href={url}
-                  className="p-2 rounded-full bg-gray-800 text-gray-400 hover:text-primary-400 
-                           hover:bg-gray-700 transition-all duration-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+            <div className="flex items-center gap-3">
+              <a
+                href={COMPANY.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-carbon-800 text-gray-400 hover:text-lime-400
+                           hover:bg-carbon-700 border border-white/[0.06] transition-all duration-300"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href={COMPANY.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-carbon-800 text-gray-400 hover:text-lime-400
+                           hover:bg-carbon-700 border border-white/[0.06] transition-all duration-300"
+              >
+                <Github className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Services</h3>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <a href="#" className="text-gray-400 hover:text-primary-400 transition-colors">
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Quick Links + Services */}
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-white text-sm font-semibold mb-4">Navigate</h3>
+              <ul className="space-y-3">
+                {quickLinks.map(({ to, label }) => (
+                  <li key={to}>
+                    <Link to={to} className="footer-link text-sm">{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white text-sm font-semibold mb-4">Services</h3>
+              <ul className="space-y-3">
+                {services.map((s) => (
+                  <li key={s}>
+                    <Link to="/services" className="footer-link text-sm">{s}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Resources */}
-          {/* <div>
-            <h3 className="text-white font-semibold mb-4">Resources</h3>
-            <ul className="space-y-3">
-              {resources.map((resource) => (
-                <li key={resource}>
-                  <a href="#" className="text-gray-400 hover:text-primary-400 transition-colors">
-                    {resource}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div> */}
-
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Contact</h3>
+            <h3 className="text-white text-sm font-semibold mb-4">Contact</h3>
             <ul className="space-y-4">
               <li>
-                <a href={`mailto:${COMPANY.email}`} 
-                   className="flex items-start text-gray-400 hover:text-primary-400 transition-colors group">
-                  <Mail className="w-5 h-5 mr-2 mt-1 group-hover:text-primary-400" />
-                  <span>{COMPANY.email}</span>
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className="flex items-start gap-3 text-gray-400 hover:text-lime-400 transition-colors group"
+                >
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span className="text-sm">{COMPANY.email}</span>
                 </a>
               </li>
-              <li>
-                <a href={`tel:${COMPANY.phone}`} 
-                   className="flex items-start text-gray-400 hover:text-primary-400 transition-colors group">
-                  <Phone className="w-5 h-5 mr-2 mt-1 group-hover:text-primary-400" />
-                  <span>{COMPANY.phone}</span>
-                </a>
-              </li>
-              <li className="flex items-start text-gray-400">
-                <MapPin className="w-5 h-5 mr-2 mt-1 text-gray-500" />
-                <span>
-                  403 Delrex Blvd<br />
-                  Georgetown, ON L7G 4H8
-                </span>
+              <li className="flex items-start gap-3 text-gray-400">
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-500" />
+                <span className="text-sm">{COMPANY.location}</span>
               </li>
             </ul>
+
+            <div className="mt-6 flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500" />
+              </span>
+              <span className="text-xs text-gray-400">{COMPANY.availability}</span>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section with Gradient Border */}
-        <div className="relative mt-16">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
-          <div className="pt-8 grid md:grid-cols-2 gap-4 items-center">
+        {/* Bottom Bar */}
+        <div className="relative mt-12 pt-8">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
               © {currentYear} {COMPANY.name}. All rights reserved.
             </p>
-            <div className="flex flex-wrap justify-start md:justify-end gap-6 text-sm">
-              <a href="/privacy" className="text-gray-400 hover:text-primary-400 transition-colors">
+            <div className="flex gap-6 text-sm">
+              <Link to="/privacy" className="text-gray-500 hover:text-gray-300 transition-colors">
                 Privacy Policy
-              </a>
-              <a href="/terms" className="text-gray-400 hover:text-primary-400 transition-colors">
+              </Link>
+              <Link to="/terms" className="text-gray-500 hover:text-gray-300 transition-colors">
                 Terms of Service
-              </a>
-              
+              </Link>
             </div>
           </div>
         </div>

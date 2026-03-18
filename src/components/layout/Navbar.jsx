@@ -1,200 +1,128 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import Logo from '../ui/Logo';
-import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import Logo from '../ui/Logo-white';
+import { Link, useLocation } from 'react-router-dom';
+
+const NAV_LINKS = [
+  { to: '/services', label: 'Services' },
+  { to: '/work', label: 'Work' },
+  { to: '/about', label: 'About' },
+];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const solutionsMenu = [
-    {
-      title: 'Web Development',
-      href: '#web-development',
-      description: 'Custom web applications and enterprise solutions'
-    },
-    {
-      title: 'Mobile Development',
-      href: '#mobile-development',
-      description: 'Native and cross-platform mobile apps'
-    },
-    {
-      title: 'Cloud Solutions',
-      href: '#cloud-solutions',
-      description: 'AWS, Azure, and GCP cloud infrastructure'
-    },
-    {
-      title: 'AI & Machine Learning',
-      href: '#ai-ml',
-      description: 'Intelligent automation and data analytics'
-    }
-  ];
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
-  const navLinks = [
-    { 
-      label: 'Solutions',
-      dropdown: solutionsMenu
-    },
-    { href: '#expertise', label: 'Expertise' },
-    { href: '#case-studies', label: 'Case Studies' },
-    { href: '#contact', label: 'Contact' }
-  ];
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMenuOpen]);
+
+  const isActive = (to) => location.pathname === to;
 
   return (
     <>
-      {/* Spacer div to prevent content overlap */}
-      <div className="h-14 md:h-20" />
-      
-      {/* Mobile Navbar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 bg-white z-50">
-        <div className="flex items-center justify-between h-14 px-4">
-          <Link to="/" className="flex items-center relative z-[60]">
-            <Logo className="h-7" />
-          </Link>
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="relative z-[60] p-1.5 -mr-1.5"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? 
-              <X size={24} className="text-gray-800" /> : 
-              <Menu size={24} className="text-gray-800" />
-            }
-          </button>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" 
-               onClick={() => setIsMenuOpen(false)} />
-        )}
-
-        {/* Mobile Menu */}
-        <div 
-          className={`fixed inset-x-0 top-14 bottom-0 bg-white z-50 transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? 'translate-y-0' : '-translate-y-full'
-          }`}
-        >
-          <div className="h-full overflow-y-auto px-4 py-4">
-            {navLinks.map((item, index) => (
-              <div key={index} className="mb-4">
-                {item.dropdown ? (
-                  <>
-                    <button
-                      onClick={() => setActiveDropdown(activeDropdown === index ? null : index)}
-                      className="w-full text-left py-2 flex items-center justify-between text-gray-800"
-                    >
-                      <span className="text-lg">{item.label}</span>
-                      <ChevronDown className={`transition-transform duration-200 ${
-                        activeDropdown === index ? 'rotate-180' : ''
-                      }`} />
-                    </button>
-                    {activeDropdown === index && (
-                      <div className="mt-2 space-y-2">
-                        {item.dropdown.map((solution, idx) => (
-                          <a
-                            key={idx}
-                            href={solution.href}
-                            className="block py-2 pl-4 text-gray-600"
-                          >
-                            {solution.title}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <a
-                    href={item.href}
-                    className="block py-2 text-lg text-gray-800"
-                  >
-                    {item.label}
-                  </a>
-                )}
-              </div>
-            ))}
-            <div className="mt-6">
-              <a
-                href="#contact"
-                className="block w-full py-3 text-center bg-primary-500 text-white rounded-lg"
-              >
-                Get Started
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Navbar */}
-      <nav className={`hidden md:block fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
-        isScrolled ? 'shadow-md' : ''
-      }`}>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-20">
-            <Link to="/" className="flex items-center">
-              <Logo className="h-12" />
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-carbon-900/95 backdrop-blur-md border-b border-white/[0.06] shadow-xl shadow-black/20'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center flex-shrink-0">
+              <Logo className="h-8 md:h-10" />
             </Link>
-            
-            <div className="flex items-center space-x-8">
-              {navLinks.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="relative group"
-                  onMouseEnter={() => setActiveDropdown(index)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-8">
+              {NAV_LINKS.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`nav-link text-sm font-medium pb-0.5 ${isActive(to) ? 'nav-link-active' : ''}`}
                 >
-                  <a
-                    href={item.href}
-                    className="flex items-center text-gray-700 hover:text-primary-500 
-                             transition-colors duration-200 py-2"
-                  >
-                    {item.label}
-                    {item.dropdown && <ChevronDown className="ml-1 h-4 w-4" />}
-                  </a>
-                  
-                  {item.dropdown && activeDropdown === index && (
-                    <div className="absolute top-full left-0 w-72 py-3 bg-white rounded-lg shadow-xl
-                                 transform translate-y-2 z-50">
-                      {item.dropdown.map((solution, idx) => (
-                        <a
-                          key={idx}
-                          href={solution.href}
-                          className="block px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
-                        >
-                          <span className="block text-sm font-medium text-gray-900">
-                            {solution.title}
-                          </span>
-                          <span className="block text-sm text-gray-500 mt-0.5">
-                            {solution.description}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {label}
+                </Link>
               ))}
-              
-              <a 
-                href="#contact" 
-                className="px-4 py-2 bg-primary-500 text-white rounded-lg
-                         hover:bg-primary-600 transition-colors duration-200"
-              >
-                Get Started
-              </a>
             </div>
+
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center">
+              <Link to="/contact" className="btn-lime text-sm">
+                Let's Talk
+              </Link>
+            </div>
+
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Slide-in Panel */}
+      <div
+        className={`fixed top-0 right-0 bottom-0 w-72 bg-carbon-900 border-l border-white/[0.06] z-50 md:hidden
+                    transform transition-transform duration-300 ease-in-out ${
+                      isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
+      >
+        <div className="flex items-center justify-between h-16 px-6 border-b border-white/[0.06]">
+          <span className="text-sm font-mono text-lime-500">Menu</span>
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="p-1 text-gray-400 hover:text-white"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <nav className="flex flex-col px-6 py-8 gap-6">
+          {NAV_LINKS.map(({ to, label }) => (
+            <Link
+              key={to}
+              to={to}
+              className={`text-lg font-medium transition-colors duration-200 ${
+                isActive(to) ? 'text-lime-500' : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
+          <div className="pt-4 border-t border-white/[0.06]">
+            <Link to="/contact" className="btn-lime w-full justify-center text-sm">
+              Let's Talk
+            </Link>
+          </div>
+        </nav>
+      </div>
     </>
   );
 };

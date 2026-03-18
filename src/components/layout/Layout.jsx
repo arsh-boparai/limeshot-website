@@ -7,79 +7,39 @@ import { ArrowUp } from 'lucide-react';
 const Layout = ({ children }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
-    };
-
-    const handleHashClick = (e) => {
-      const href = e.target.getAttribute('href');
-      if (href?.startsWith('#')) {
-        e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-          const navbarHeight = 64;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    };
-
-    // Scroll handlers
+    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
     window.addEventListener('scroll', handleScroll);
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', handleHashClick);
-    });
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', handleHashClick);
-      });
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Scroll to top when navigating between routes
   useEffect(() => {
     if (!location.hash) {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-carbon-900">
       <Navbar />
-      <main className={`flex-grow ${!isHomePage ? 'pt-20' : ''}`}>
+      <main className="flex-grow">
         {children || <Outlet />}
       </main>
       <Footer />
 
-      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 bg-primary-500 text-white p-3 rounded-full 
-                   shadow-lg transition-all duration-300 hover:bg-primary-600 
+        className={`fixed bottom-8 right-8 bg-lime-500 text-carbon-950 p-3 rounded-full
+                   shadow-lg transition-all duration-300 hover:bg-lime-400
                    hover:shadow-xl transform hover:scale-110 z-50 ${
-                     showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+                     showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
                    }`}
         aria-label="Scroll to top"
       >
-        <ArrowUp className="w-6 h-6" />
+        <ArrowUp className="w-5 h-5" />
       </button>
     </div>
   );

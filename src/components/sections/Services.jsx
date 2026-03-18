@@ -1,104 +1,73 @@
-import React from 'react';
-import { Monitor, Smartphone, Cpu, Database, Cloud, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code2, Cpu, Smartphone, ArrowRight, Check } from 'lucide-react';
+import { SERVICES } from '../../utils/constant';
+import SectionHeading from '../ui/SectionHeading';
+import ScrollReveal from '../ui/ScrollReveal';
 
-const SERVICES = [
-  {
-    icon: Monitor,
-    title: "Web Development",
-    description: "Custom web applications built with cutting-edge technologies for optimal performance and user experience.",
-    features: [
-      "Single Page Applications",
-      "Progressive Web Apps",
-      "E-commerce Solutions"
-    ]
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Development",
-    description: "Native and cross-platform mobile applications that deliver seamless experiences across all devices.",
-    features: [
-      "iOS & Android Apps",
-      "Cross-platform Solutions",
-      "Mobile-first Design"
-    ]
-  },
-  {
-    icon: Cpu,
-    title: "AI Solutions",
-    description: "Intelligent automation and data-driven insights to transform your business operations.",
-    features: [
-      "Machine Learning",
-      "Predictive Analytics",
-      "Natural Language Processing"
-    ]
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Services",
-    description: "Scalable cloud infrastructure and solutions that grow with your business needs.",
-    features: [
-      "Cloud Migration",
-      "Serverless Architecture",
-      "Cloud Optimization"
-    ]
-  },
-  {
-    icon: Database,
-    title: "Data Solutions",
-    description: "Comprehensive data management and analytics solutions for informed decision-making.",
-    features: [
-      "Big Data Processing",
-      "Real-time Analytics",
-      "Data Warehousing"
-    ]
-  },
-  {
-    icon: Shield,
-    title: "Cybersecurity",
-    description: "Enterprise-grade security solutions to protect your digital assets and data.",
-    features: [
-      "Security Audits",
-      "Threat Protection",
-      "Compliance Solutions"
-    ]
-  }
-];
+const ICON_MAP = {
+  Code2,
+  Cpu,
+  Smartphone,
+};
 
-const ServiceCard = ({ icon: Icon, title, description, features }) => (
-  <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-    <div className="w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center mb-6">
-      <Icon className="w-6 h-6 text-primary-500" />
-    </div>
-    <h3 className="text-xl font-semibold mb-3 text-gray-900">{title}</h3>
-    <p className="text-gray-600 mb-6">{description}</p>
-    <ul className="space-y-2">
-      {features.map((feature, index) => (
-        <li key={index} className="flex items-center text-gray-600 text-sm">
-          <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2"></div>
-          {feature}
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+const ServiceCard = ({ service, index }) => {
+  const Icon = ICON_MAP[service.icon] || Code2;
+  return (
+    <ScrollReveal delay={index * 100}>
+      <div className="card-dark p-8 h-full flex flex-col">
+        <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 bg-lime-500/10 border border-lime-500/20">
+          <Icon className="w-6 h-6 text-lime-500" />
+        </div>
+
+        <h3 className="text-xl font-heading font-semibold text-white mb-2">
+          {service.title}
+        </h3>
+        <p className="text-sm font-mono text-lime-500 mb-4">{service.tagline}</p>
+        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+          {service.description}
+        </p>
+
+        <ul className="space-y-2 mb-6 flex-grow">
+          {service.bullets.map((b) => (
+            <li key={b} className="flex items-start gap-2 text-sm text-gray-400">
+              <Check className="w-4 h-4 text-lime-500 mt-0.5 flex-shrink-0" />
+              {b}
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-wrap gap-2 mb-6">
+          {service.techs.map((t) => (
+            <span key={t} className="tech-pill">{t}</span>
+          ))}
+        </div>
+
+        <Link
+          to={`/services#${service.slug}`}
+          className="inline-flex items-center gap-1.5 text-sm text-lime-500 hover:text-lime-400 font-medium transition-colors mt-auto"
+        >
+          Learn More <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+    </ScrollReveal>
+  );
+};
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            Comprehensive Digital Solutions
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            End-to-end software development services that transform ideas into 
-            powerful, scalable solutions for the modern digital landscape.
-          </p>
-        </div>
+    <section id="services" className="py-24 bg-carbon-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <ScrollReveal>
+          <SectionHeading
+            label="What I Do"
+            title="Focused. Senior. Production-Ready."
+            subtitle="I don't do everything. I do three things exceptionally well — and I've shipped each of them to real users at scale."
+          />
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {SERVICES.map((service, i) => (
+            <ServiceCard key={service.id} service={service} index={i} />
           ))}
         </div>
       </div>

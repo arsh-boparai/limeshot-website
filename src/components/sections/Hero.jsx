@@ -1,74 +1,62 @@
-import React from 'react';
-import { ArrowRight, Code, Rocket, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import TerminalBlock from '../ui/TerminalBlock';
+import { STATS } from '../../utils/constant';
 
 const Hero = () => {
-  const stats = [
-    { value: '98%', label: 'Success Rate' },
-    { value: '50+', label: 'Solutions Delivered' },
-    { value: '10+', label: 'Enterprise Clients' },
-    { value: '24/7', label: 'Technical Support' }
-  ];
-
   return (
-    <section className="min-h-screen pt-20 bg-gradient-to-b from-gray-50 to-white">
-      {/* Main content */}
-      <div className="max-w-6xl mx-auto px-4 pt-16 pb-20 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-          Build Your Next 
-          <span className="block">Digital Success with
-            <span className="text-primary-500"> Expert Engineers</span>
-          </span>
-        </h1>
-        
-        <div className="flex flex-wrap justify-center gap-6 mb-8">
-          <div className="flex items-center text-gray-600">
-            <Code className="w-5 h-5 mr-2 text-primary-500" />
-            <span>Custom Development</span>
-          </div>
-          <div className="flex items-center text-gray-600">
-            <Rocket className="w-5 h-5 mr-2 text-primary-500" />
-            <span>Scalable Solutions</span>
-          </div>
-          <div className="flex items-center text-gray-600">
-            <Shield className="w-5 h-5 mr-2 text-primary-500" />
-            <span>Enterprise Security</span>
-          </div>
-        </div>
+    <section className="relative min-h-screen flex items-center bg-dot-grid overflow-hidden">
+      <div className="absolute inset-0 bg-hero-mesh pointer-events-none" />
 
-        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          Transform your ideas into powerful digital solutions. We specialize in custom 
-          software development, enterprise applications, and cutting-edge AI integration 
-          that drives real business growth.
-        </p>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-20 w-full">
+        <div className="grid lg:grid-cols-[1fr_520px] xl:grid-cols-[1fr_560px] gap-12 lg:gap-16 items-center">
 
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          <button className="bg-primary-500 text-white px-6 py-3 rounded-lg font-semibold 
-                         hover:bg-primary-600 transition-all duration-200 inline-flex items-center
-                         shadow-lg hover:shadow-xl">
-            Schedule Consultation
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </button>
-          <button className="bg-white text-gray-800 px-6 py-3 rounded-lg font-semibold 
-                         border border-gray-200 hover:border-primary-500 hover:text-primary-500 
-                         transition-all duration-200 inline-flex items-center">
-            View Case Studies
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </button>
-        </div>
+          {/* Left — Text */}
+          <div>
+            <span className="section-label">Senior Technical Consultant</span>
 
-        {/* Stats with enhanced presentation */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {stats.map((stat, index) => (
-            <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl 
-                                      transition-all duration-300 transform hover:-translate-y-1">
-              <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">
-                {stat.value}
-              </div>
-              <div className="text-gray-600 text-sm md:text-base font-medium">
-                {stat.label}
-              </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-[1.1] mt-3 mb-6">
+              I Build{' '}
+              <span className="text-lime-500">Production-Grade</span>
+              <br className="hidden sm:block" />
+              {' '}Apps That Scale
+            </h1>
+
+            <p className="text-lg text-gray-400 leading-relaxed max-w-xl mb-8">
+              8+ years shipping React, React Native, and AI-powered applications
+              for logistics, mobility, and enterprise clients across North America.
+              No agency bloat — just senior execution.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mb-12">
+              <Link to="/contact" className="btn-lime">
+                Let's Talk
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link to="/work" className="btn-ghost">
+                See My Work
+              </Link>
             </div>
-          ))}
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/[0.06]">
+              {STATS.map(({ value, label }) => (
+                <div key={label}>
+                  <div className="text-2xl md:text-3xl font-heading font-bold text-lime-500">
+                    {value}
+                  </div>
+                  <div className="text-sm text-gray-500 mt-1">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — Terminal */}
+          <div className="w-full hidden sm:block">
+            <div className="max-h-[400px] sm:max-h-none overflow-hidden">
+              <TerminalBlock />
+            </div>
+          </div>
         </div>
       </div>
     </section>

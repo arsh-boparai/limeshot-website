@@ -76,12 +76,12 @@ const TermsOfService = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
+    <div className="min-h-screen bg-carbon-900 py-20">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Terms of Service</h1>
+        <div className="bg-carbon-800 rounded-2xl shadow-lg p-8 md:p-12">
+          <h1 className="text-3xl font-bold text-white mb-8">Terms of Service</h1>
           
-          <div className="text-gray-600 mb-8">
+          <div className="text-gray-400 mb-8">
             <p>Last updated: {lastUpdated}</p>
             <p className="mt-4">
               Please read these Terms of Service carefully before using our services. 
@@ -91,12 +91,12 @@ const TermsOfService = () => {
 
           <div className="space-y-12">
             {sections.map((section, index) => (
-              <div key={index} className="border-t pt-8 first:border-t-0 first:pt-0">
+              <div key={index} className="border-t border-white/[0.06] pt-8 first:border-t border-white/[0.06]-0 first:pt-0">
                 <div className="flex items-center mb-6">
-                  <div className="p-2 bg-primary-50 rounded-lg mr-4">
-                    <section.icon className="w-6 h-6 text-primary-500" />
+                  <div className="p-2 bg-lime-500/10 rounded-lg mr-4">
+                    <section.icon className="w-6 h-6 text-lime-500" />
                   </div>
-                  <h2 className="text-2xl font-semibold text-gray-900">
+                  <h2 className="text-2xl font-semibold text-white">
                     {section.title}
                   </h2>
                 </div>
@@ -104,8 +104,8 @@ const TermsOfService = () => {
                 {section.content && (
                   <ul className="space-y-3">
                     {section.content.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 mr-2"></div>
+                      <li key={itemIndex} className="flex items-start text-gray-400">
+                        <div className="w-1.5 h-1.5 bg-lime-500/100 rounded-full mt-2 mr-2"></div>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -116,13 +116,13 @@ const TermsOfService = () => {
                   <div className="space-y-6">
                     {section.subsections.map((subsection, subIndex) => (
                       <div key={subIndex}>
-                        <h3 className="text-lg font-medium text-gray-900 mb-3">
+                        <h3 className="text-lg font-medium text-white mb-3">
                           {subsection.subtitle}
                         </h3>
                         <ul className="space-y-2">
                           {subsection.points.map((point, pointIndex) => (
-                            <li key={pointIndex} className="flex items-start text-gray-600">
-                              <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 mr-2"></div>
+                            <li key={pointIndex} className="flex items-start text-gray-400">
+                              <div className="w-1.5 h-1.5 bg-lime-500/100 rounded-full mt-2 mr-2"></div>
                               <span>{point}</span>
                             </li>
                           ))}
@@ -135,11 +135,11 @@ const TermsOfService = () => {
             ))}
           </div>
 
-          <div className="mt-12 pt-8 border-t">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Contact Us</h2>
-            <p className="text-gray-600">
+          <div className="mt-12 pt-8 border-t border-white/[0.06]">
+            <h2 className="text-xl font-semibold text-white mb-4">Contact Us</h2>
+            <p className="text-gray-400">
               If you have any questions about these Terms of Service, please contact us at:{' '}
-              <a href="mailto:contact@limeshotdigital.com" className="text-primary-500 hover:text-primary-600">
+              <a href="mailto:contact@limeshotdigital.com" className="text-lime-500 hover:text-lime-400">
               contact@limeshotdigital.com
               </a>
             </p>
