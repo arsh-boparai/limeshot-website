@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Send, Mail, MapPin, Linkedin } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { COMPANY } from '../utils/constant';
 import ScrollReveal from '../components/ui/ScrollReveal';
 
@@ -35,30 +34,27 @@ const ContactPage = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        company: formData.company || 'Not provided',
-        project_type: formData.projectType,
-        message: formData.message,
-        to_name: 'Limeshot Digital',
-      };
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '19ce9135-36e4-4b85-8380-9a5df979b693',
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || 'Not provided',
+          project_type: formData.projectType,
+          message: formData.message,
+          subject: `New project inquiry from ${formData.name}`,
+        }),
+      });
+      const result = await response.json();
+      if (!result.success) throw new Error(result.message);
 
-      const response = await emailjs.send(
-        'service_pf1megc',
-        'template_ox3xq8p',
-        templateParams
-      );
-
-      if (response.status === 200) {
-        setStatus({
-          type: 'success',
-          message: "Message sent! We will get back to you within 1–2 business days.",
-        });
-        setFormData({ name: '', email: '', company: '', projectType: '', message: '' });
-      } else {
-        throw new Error('Failed');
-      }
+      setStatus({
+        type: 'success',
+        message: "Message sent! We will get back to you within 1–2 business days.",
+      });
+      setFormData({ name: '', email: '', company: '', projectType: '', message: '' });
     } catch (error) {
       console.error(error);
       setStatus({

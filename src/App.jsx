@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import emailjs from '@emailjs/browser';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
@@ -31,10 +29,6 @@ const ORG_SCHEMA = {
 };
 
 function App() {
-  useEffect(() => {
-    emailjs.init("h5y1lHlzO7O4mXQB-");
-  }, []);
-
   return (
     <>
       <Helmet>
