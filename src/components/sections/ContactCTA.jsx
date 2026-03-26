@@ -13,8 +13,8 @@ const ContactCTA = () => {
             Let's Build Something Real
           </h2>
           <p className="text-gray-400 text-lg leading-relaxed mb-4">
-            I'm selective about the projects I take on — which means the ones I do
-            take on get my full focus. If you have a serious product challenge, let's talk.
+            We are selective about the projects we take on — which means the ones we do
+            take on get our full focus. If you have a serious product challenge, let's talk.
           </p>
 
           {/* Availability */}

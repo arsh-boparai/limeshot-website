@@ -8,7 +8,7 @@ const Process = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <SectionHeading
-            label="How I Work"
+            label="How We Work"
             title="From Brief to Production"
             subtitle="A repeatable process that reduces surprises and ships on time."
             centered

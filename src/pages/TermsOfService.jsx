@@ -2,7 +2,7 @@ import React from 'react';
 import { FileText, ShieldCheck, AlertCircle, Scale } from 'lucide-react';
 
 const TermsOfService = () => {
-  const lastUpdated = "January 20, 2024";
+  const lastUpdated = "March 25, 2026";
 
   const sections = [
     {

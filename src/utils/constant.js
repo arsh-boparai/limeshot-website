@@ -6,7 +6,7 @@ export const SERVICES = [
     title: 'React & React Native Development',
     tagline: 'Production-grade web and mobile apps',
     description:
-      'I build performant, scalable React web apps and React Native mobile apps — from architecture through deployment. Every codebase is TypeScript-first, maintainable, and built with real-world scale in mind.',
+      'Our engineers build performant, scalable React web apps and React Native mobile apps — from architecture through deployment. Every codebase is TypeScript-first, maintainable, and built with real-world scale in mind.',
     bullets: [
       'Custom React component libraries and design systems',
       'React Native apps for iOS and Android (Expo & bare workflow)',
@@ -14,7 +14,7 @@ export const SERVICES = [
       'TypeScript-first codebases with strict type safety',
       'Performance optimization, bundle analysis, and code-splitting',
     ],
-    idealFor: 'Startups and scale-ups that need a senior engineer who can own the frontend end-to-end.',
+    idealFor: 'Startups and scale-ups that need a senior engineering team who can own the frontend end-to-end.',
     techs: ['React', 'React Native', 'TypeScript', 'Vite', 'AG Grid', 'Expo'],
   },
   {
@@ -24,7 +24,7 @@ export const SERVICES = [
     title: 'AI & Agent Integration',
     tagline: 'Intelligent automation built into your product',
     description:
-      'I integrate AI capabilities directly into your existing applications — LLM-powered features, autonomous agent workflows, and RAG pipelines — without the hype and without breaking your codebase.',
+      'We integrate AI capabilities directly into your existing applications — LLM-powered features, autonomous agent workflows, and RAG pipelines — without the hype and without breaking your codebase.',
     bullets: [
       'LLM integration (OpenAI, Anthropic, Gemini)',
       'Autonomous agent workflows with Google ADK & MCP',
@@ -42,7 +42,7 @@ export const SERVICES = [
     title: 'Web & Mobile Development',
     tagline: 'Full-stack builds from idea to App Store',
     description:
-      'End-to-end product development — from discovery and architecture through backend APIs, mobile apps, and cloud deployment. I work across the full stack when the project demands it.',
+      'End-to-end product development — from discovery and architecture through backend APIs, mobile apps, and cloud deployment. Our team works across the full stack when the project demands it.',
     bullets: [
       'Firebase and GCP backend architectures',
       'GraphQL APIs with Hasura',
@@ -51,7 +51,7 @@ export const SERVICES = [
       'IoT dashboards and device management UIs',
     ],
     idealFor:
-      'Companies that need a technical lead who can make architectural decisions, not just write code.',
+      'Companies that need a technical team who can make architectural decisions and own delivery end-to-end.',
     techs: ['Firebase', 'GCP', 'Azure', 'GraphQL', 'Hasura', 'Node.js'],
   },
 ];
@@ -112,10 +112,10 @@ export const TECH_STACK = {
 };
 
 export const STATS = [
-  { value: '8+', label: 'Years Experience' },
-  { value: '15+', label: 'Engineers Led' },
-  { value: '6+', label: 'Apps Shipped' },
-  { value: '500+', label: 'Daily Users' },
+  { value: '50+', label: 'Projects Delivered' },
+  { value: '30+', label: 'Enterprise Clients' },
+  { value: '5', label: 'Industries Served' },
+  { value: '3', label: 'Products Shipped' },
 ];
 
 export const PROCESS = [
@@ -123,13 +123,13 @@ export const PROCESS = [
     step: '01',
     title: 'Discovery',
     description:
-      'I align on goals, constraints, and success metrics before writing a single line of code.',
+      'We align on goals, constraints, and success metrics before writing a single line of code.',
   },
   {
     step: '02',
     title: 'Architecture',
     description:
-      'I design the system — data models, API contracts, component structure — with scalability built in from day one.',
+      'We design the system — data models, API contracts, component structure — with scalability built in from day one.',
   },
   {
     step: '03',
@@ -141,15 +141,15 @@ export const PROCESS = [
     step: '04',
     title: 'Ship',
     description:
-      "Deployment, monitoring, and handoff. I leave your team with docs, tests, and a codebase they can own.",
+      "Deployment, monitoring, and handoff. We leave your team with docs, tests, and a codebase they can own.",
   },
 ];
 
 export const COMPANY = {
-  name: 'Limeshot Digital Solutions',
+  name: 'Limeshot Digital',
   email: 'contact@limeshotdigital.com',
   location: 'Ontario, Canada',
-  availability: 'Currently accepting projects for Q2 2026',
+  availability: 'Accepting new client projects',
   social: {
     linkedin: 'https://www.linkedin.com/in/arshdeep-singh-a43496121/',
     github: 'https://github.com/arsh-boparai',

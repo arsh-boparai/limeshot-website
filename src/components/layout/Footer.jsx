@@ -9,6 +9,7 @@ const Footer = () => {
   const quickLinks = [
     { to: '/services', label: 'Services' },
     { to: '/work', label: 'Work' },
+    { to: '/products', label: 'Products' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
   ];
@@ -30,9 +31,9 @@ const Footer = () => {
               <Logo className="h-9" />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Senior technical consultant specialising in React, React Native,
-              and AI integration. I build production-grade applications that ship
-              on time and scale with your business.
+              Building software products that matter. We specialise in React,
+              React Native, and AI integration — production-grade applications
+              that ship on time and scale with your business.
             </p>
             <div className="flex items-center gap-3">
               <a

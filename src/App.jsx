@@ -8,9 +8,27 @@ import ServicesPage from './pages/ServicesPage';
 import WorkPage from './pages/WorkPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ProductsPage from './pages/ProductsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import LocalFlowWidget from './components/ui/LocalFlowWidget';
+
+const ORG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Limeshot Digital',
+  url: 'https://limeshotdigital.com',
+  description: 'Limeshot Digital builds production-grade web apps, mobile apps, and SaaS products. Our team of engineers, architects, and QA specialists deliver software that scales.',
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'Ontario',
+    addressCountry: 'CA',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contact@limeshotdigital.com',
+  },
+};
 
 function App() {
   useEffect(() => {
@@ -20,26 +38,32 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Limeshot Digital Solutions | Senior Technical Consultant</title>
+        <title>Limeshot Digital | Software Development &amp; Product Studio</title>
         <meta
           name="description"
-          content="Arsh Boparai — Senior Frontend Technical Lead. I build production-grade React, React Native, and AI-powered applications. 8+ years experience, North America."
+          content="Limeshot Digital builds production-grade web apps, mobile apps, and SaaS products. Our team of engineers, architects, and QA specialists deliver software that scales."
         />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Limeshot Digital Solutions | Senior Technical Consultant" />
-        <meta
-          property="og:description"
-          content="Senior technical consultant specialising in React, React Native, and AI agent integration. Production-grade apps that scale."
-        />
-        <meta property="og:site_name" content="Limeshot Digital Solutions" />
-        <meta
-          name="keywords"
-          content="React developer, React Native, TypeScript, AI integration, senior consultant, frontend lead, Firebase, GCP, Azure, tech consultant Canada"
-        />
-        <meta name="author" content="Arsh Boparai" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Limeshot Digital" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#84CC16" />
+        <meta
+          name="keywords"
+          content="software development agency Canada, react development company, mobile app development, AI integration, software studio Ontario, react native development, enterprise software"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Limeshot Digital | Software Development & Product Studio" />
+        <meta
+          property="og:description"
+          content="Limeshot Digital builds production-grade web apps, mobile apps, and SaaS products. Our team of engineers, architects, and QA specialists deliver software that scales."
+        />
+        <meta property="og:site_name" content="Limeshot Digital" />
+        <meta property="og:url" content="https://limeshotdigital.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Limeshot Digital | Software Development & Product Studio" />
+        <meta name="twitter:description" content="Production-grade web apps, mobile apps, and SaaS products. Engineers, architects, and QA specialists." />
         <link rel="canonical" href="https://limeshotdigital.com" />
+        <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>
       </Helmet>
 
       <Routes>
@@ -47,6 +71,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/work" element={<WorkPage />} />
+          <Route path="/products" element={<ProductsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />

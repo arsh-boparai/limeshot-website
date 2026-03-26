@@ -132,3 +132,34 @@
     @apply max-w-6xl mx-auto px-4 sm:px-6;
   }
 }
+
+/* ─── Animation Keyframes ─────────────────────────────────── */
+@keyframes mesh-shift {
+  0%   { background-position: 0% 50%; opacity: 0.8; }
+  50%  { background-position: 100% 50%; opacity: 1; }
+  100% { background-position: 0% 50%; opacity: 0.8; }
+}
+
+@keyframes float {
+  0%   { transform: translateX(-50%) translateY(0px); }
+  50%  { transform: translateX(-50%) translateY(-6px); }
+  100% { transform: translateX(-50%) translateY(0px); }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.animate-mesh-shift {
+  animation: mesh-shift 12s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-float {
+  animation: float 2.4s ease-in-out infinite;
+}
+
+.animate-blink-cursor {
+  animation: blink-cursor 1s step-end infinite;
+}

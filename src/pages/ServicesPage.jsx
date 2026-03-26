@@ -72,9 +72,11 @@ const ServicesPage = () => {
   return (
     <>
     <Helmet>
-      <title>Services — React, AI &amp; Mobile Dev | Limeshot</title>
-      <meta name="description" content="Senior technical consulting in React & React Native development, AI agent integration, and full-stack web & mobile builds." />
+      <title>Services — Web, Mobile &amp; AI Development | Limeshot Digital</title>
+      <meta name="description" content="React & React Native development, AI agent integration, and full-stack web & mobile builds. Our team of senior engineers delivers production-grade software." />
+      <meta name="keywords" content="react native development Canada, AI integration, mobile app development Canada, react development agency" />
       <meta property="og:url" content="https://limeshotdigital.com/services" />
+      <meta property="og:title" content="Services — Web, Mobile & AI Development | Limeshot Digital" />
       <link rel="canonical" href="https://limeshotdigital.com/services" />
     </Helmet>
     <main>
@@ -84,8 +86,8 @@ const ServicesPage = () => {
           <ScrollReveal>
             <SectionHeading
               label="Services"
-              title="Three Things I Do Exceptionally Well"
-              subtitle="I'm not a generalist agency. I'm a senior engineer who has spent 8+ years going deep on specific problem domains. Here's where I can deliver the most value."
+              title="Three Things We Do Exceptionally Well"
+              subtitle="We are not a generalist agency. Our team goes deep on specific problem domains — React & React Native, AI integration, and full-stack product development. Here is where we deliver the most value."
             />
           </ScrollReveal>
 

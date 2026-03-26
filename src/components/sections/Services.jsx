@@ -1,20 +1,40 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Cpu, Smartphone, ArrowRight, Check } from 'lucide-react';
 import { SERVICES } from '../../utils/constant';
 import SectionHeading from '../ui/SectionHeading';
 import ScrollReveal from '../ui/ScrollReveal';
 
-const ICON_MAP = {
-  Code2,
-  Cpu,
-  Smartphone,
-};
+const ICON_MAP = { Code2, Cpu, Smartphone };
 
 const ServiceCard = ({ service, index }) => {
   const Icon = ICON_MAP[service.icon] || Code2;
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = ((y - rect.height / 2) / rect.height) * -8;
+    const rotateY = ((x - rect.width / 2) / rect.width) * 8;
+    card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01,1.01,1.01)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (cardRef.current) cardRef.current.style.transform = '';
+  };
+
   return (
     <ScrollReveal delay={index * 100}>
-      <div className="card-dark p-8 h-full flex flex-col">
+      <div
+        ref={cardRef}
+        className="card-dark p-8 h-full flex flex-col"
+        style={{ transition: 'transform 0.15s ease-out', transformStyle: 'preserve-3d' }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 bg-lime-500/10 border border-lime-500/20">
           <Icon className="w-6 h-6 text-lime-500" />
         </div>
@@ -59,9 +79,9 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <SectionHeading
-            label="What I Do"
+            label="What We Do"
             title="Focused. Senior. Production-Ready."
-            subtitle="I don't do everything. I do three things exceptionally well — and I've shipped each of them to real users at scale."
+            subtitle="We don't do everything. We do three things exceptionally well — and we've shipped each of them to real users at scale."
           />
         </ScrollReveal>
 

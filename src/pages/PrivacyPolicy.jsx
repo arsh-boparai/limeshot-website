@@ -3,11 +3,11 @@ import { Shield, Lock, Eye, Database } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
 const PrivacyPolicy = () => {
-  const lastUpdated = "January 20, 2024";
+  const lastUpdated = "March 25, 2026";
 
   const sections = [
     {
-      title: "Information I Collect",
+      title: "Information We Collect",
       icon: Database,
       content: [
         {
@@ -31,14 +31,14 @@ const PrivacyPolicy = () => {
       ]
     },
     {
-      title: "How I Use Your Information",
+      title: "How We Use Your Information",
       icon: Eye,
       content: [
         {
           subtitle: "Service Provision",
           details: [
-            "To provide and maintain my services",
-            "To notify you about changes to my services",
+            "To provide and maintain our services",
+            "To notify you about changes to our services",
             "To provide client support",
             "To process transactions"
           ]
@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
         {
           subtitle: "Improvement and Analysis",
           details: [
-            "To improve my services",
+            "To improve our services",
             "To analyze usage patterns",
             "To develop new features",
             "To measure service effectiveness"
@@ -102,9 +102,9 @@ const PrivacyPolicy = () => {
           <div className="p-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-400 text-lg">
-                At Limeshot Digital Solutions, I take your privacy seriously. This Privacy Policy
-                describes how I collect, use, and protect your personal information when you use
-                my services.
+                At Limeshot Digital, we take your privacy seriously. This Privacy Policy
+                describes how we collect, use, and protect your personal information when you use
+                our services.
               </p>
 
               <div className="space-y-12 mt-12">
@@ -144,7 +144,7 @@ const PrivacyPolicy = () => {
               <div className="mt-12 pt-8 border-t border-white/[0.06]">
                 <h2 className="text-xl font-semibold text-white mb-4">Contact</h2>
                 <p className="text-gray-400">
-                  If you have any questions about this Privacy Policy, please contact me at:{' '}
+                  If you have any questions about this Privacy Policy, please contact us at:{' '}
                   <a href="mailto:contact@limeshotdigital.com" 
                      className="text-lime-500 hover:text-lime-400 font-medium">
                     contact@limeshotdigital.com

@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Send, Mail, MapPin, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { COMPANY } from '../utils/constant';
-import SectionHeading from '../components/ui/SectionHeading';
 import ScrollReveal from '../components/ui/ScrollReveal';
 
 const PROJECT_TYPES = [
@@ -42,20 +41,19 @@ const ContactPage = () => {
         company: formData.company || 'Not provided',
         project_type: formData.projectType,
         message: formData.message,
-        to_name: 'Arsh Boparai',
+        to_name: 'Limeshot Digital',
       };
 
       const response = await emailjs.send(
         'service_pf1megc',
         'template_ox3xq8p',
-        templateParams,
-        'h5y1lHlzO7O4mXQB-'
+        templateParams
       );
 
       if (response.status === 200) {
         setStatus({
           type: 'success',
-          message: "Message sent! I'll get back to you within 1–2 business days.",
+          message: "Message sent! We will get back to you within 1–2 business days.",
         });
         setFormData({ name: '', email: '', company: '', projectType: '', message: '' });
       } else {
@@ -65,7 +63,7 @@ const ContactPage = () => {
       console.error(error);
       setStatus({
         type: 'error',
-        message: `Something went wrong. Email me directly at ${COMPANY.email}`,
+        message: `Something went wrong. Email us directly at ${COMPANY.email}`,
       });
     } finally {
       setLoading(false);
@@ -82,9 +80,11 @@ const ContactPage = () => {
   return (
     <>
     <Helmet>
-      <title>Contact | Limeshot Digital Solutions</title>
-      <meta name="description" content="Reach out to discuss your project. Currently accepting engagements for Q2 2026." />
+      <title>Contact Limeshot Digital — Start Your Project</title>
+      <meta name="description" content="Ready to build something? Get in touch with Limeshot Digital. We work with startups and enterprises across North America." />
+      <meta name="keywords" content="hire software developers Canada, software agency contact, react development company Ontario" />
       <meta property="og:url" content="https://limeshotdigital.com/contact" />
+      <meta property="og:title" content="Contact Limeshot Digital — Start Your Project" />
       <link rel="canonical" href="https://limeshotdigital.com/contact" />
     </Helmet>
     <main>
@@ -97,11 +97,11 @@ const ContactPage = () => {
               <div>
                 <span className="section-label">Get in Touch</span>
                 <h1 className="text-3xl md:text-4xl font-heading font-bold text-white mt-3 mb-6 leading-tight">
-                  Let's Talk About Your Project
+                  Let's Discuss Your Project
                 </h1>
                 <p className="text-gray-400 leading-relaxed mb-8">
-                  I'm selective about what I take on, which means the projects I do
-                  take on get my full attention. Tell me what you're building.
+                  We are selective about what we take on, which means the projects we
+                  do take on get our full attention. Tell us what you are building.
                 </p>
 
                 {/* Availability */}
@@ -227,7 +227,7 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className={labelClass}>Tell Me About Your Project *</label>
+                    <label htmlFor="message" className={labelClass}>Tell Us About Your Project *</label>
                     <textarea
                       id="message"
                       name="message"
@@ -235,7 +235,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       rows={5}
                       className={inputClass}
-                      placeholder="What are you building? What's the timeline? What's the problem you're trying to solve?"
+                      placeholder="What are you building? What is the timeline? What problem are you trying to solve?"
                       required
                       minLength={20}
                     />

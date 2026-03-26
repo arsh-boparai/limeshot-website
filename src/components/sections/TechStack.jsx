@@ -9,8 +9,8 @@ const TechStack = () => {
         <ScrollReveal>
           <SectionHeading
             label="Tech Stack"
-            title="Tools I Ship With"
-            subtitle="A focused set of technologies I know deeply — not a laundry list."
+            title="Tools We Ship With"
+            subtitle="A focused set of technologies our team knows deeply — not a laundry list."
           />
         </ScrollReveal>
 

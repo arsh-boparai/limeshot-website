@@ -72,9 +72,11 @@ const WorkPage = () => {
   return (
     <>
     <Helmet>
-      <title>Work — Selected Projects | Limeshot</title>
-      <meta name="description" content="Production applications across logistics, mobile, AI intake, and IoT device management. Real projects with real metrics." />
+      <title>Client Work &amp; Case Studies | Limeshot Digital</title>
+      <meta name="description" content="Production applications across logistics, mobile, AI intake, and IoT device management. Real projects with real metrics from the Limeshot Digital team." />
+      <meta name="keywords" content="software case studies, enterprise app development, react native case study, AI development Canada" />
       <meta property="og:url" content="https://limeshotdigital.com/work" />
+      <meta property="og:title" content="Client Work & Case Studies | Limeshot Digital" />
       <link rel="canonical" href="https://limeshotdigital.com/work" />
     </Helmet>
     <main>
@@ -84,7 +86,7 @@ const WorkPage = () => {
           <ScrollReveal>
             <SectionHeading
               label="Selected Work"
-              title="Projects I'm Proud to Have Shipped"
+              title="Projects We're Proud to Have Shipped"
               subtitle="Four production applications across logistics, mobile, AI, and IoT. Every one of these has real users on the other end."
             />
           </ScrollReveal>
