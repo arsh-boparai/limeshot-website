@@ -9,6 +9,9 @@ import ContactPage from './pages/ContactPage';
 import ProductsPage from './pages/ProductsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import TraveoPage from './pages/TraveoPage';
+import TraveoPrivacyPolicy from './pages/TraveoPrivacyPolicy';
+import TraveoTermsOfService from './pages/TraveoTermsOfService';
 import LocalFlowWidget from './components/ui/LocalFlowWidget';
 
 const ORG_SCHEMA = {
@@ -70,6 +73,9 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/products/traveo" element={<TraveoPage />} />
+          <Route path="/products/traveo/privacy" element={<TraveoPrivacyPolicy />} />
+          <Route path="/products/traveo/terms" element={<TraveoTermsOfService />} />
         </Route>
       </Routes>
       <LocalFlowWidget />
