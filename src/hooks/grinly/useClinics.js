@@ -5,6 +5,7 @@ export function useClinics(search = '') {
   return useQuery({
     queryKey: ['clinics', search],
     queryFn: async () => {
+      if (!supabase) throw new Error('Supabase not configured');
       let query = supabase
         .from('grinly_clinics')
         .select('id, slug, name, address, city, phone, description, specialties, image_url, plan_track')

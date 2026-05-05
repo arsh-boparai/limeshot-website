@@ -6,7 +6,7 @@ export function useCreateBooking() {
 
   return useMutation({
     mutationFn: async ({ clinicId, slotId, firstName, lastName, email, phone, notes }) => {
-      // Upsert patient by email
+      if (!supabase) throw new Error('Supabase not configured');
       const { data: patient, error: patientError } = await supabase
         .from('grinly_patients')
         .upsert({ email, first_name: firstName, last_name: lastName, phone }, { onConflict: 'email' })

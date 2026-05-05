@@ -6,6 +6,8 @@ export function useGrinlyAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!supabase) { setLoading(false); return; }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
@@ -19,9 +21,9 @@ export function useGrinlyAuth() {
   }, []);
 
   const signIn = (email, password) =>
-    supabase.auth.signInWithPassword({ email, password });
+    supabase?.auth.signInWithPassword({ email, password });
 
-  const signOut = () => supabase.auth.signOut();
+  const signOut = () => supabase?.auth.signOut();
 
   return { session, loading, signIn, signOut };
 }

@@ -5,6 +5,7 @@ export function useDashboardClinic(userId) {
   return useQuery({
     queryKey: ['dashboardClinic', userId],
     queryFn: async () => {
+      if (!supabase) throw new Error('Supabase not configured');
       const { data, error } = await supabase
         .from('grinly_clinics')
         .select('*')
@@ -22,6 +23,7 @@ export function useDashboardBookings(clinicId) {
   return useQuery({
     queryKey: ['dashboardBookings', clinicId],
     queryFn: async () => {
+      if (!supabase) throw new Error('Supabase not configured');
       const { data, error } = await supabase
         .from('grinly_bookings')
         .select(`
@@ -46,6 +48,7 @@ export function useUpdateBookingStatus() {
 
   return useMutation({
     mutationFn: async ({ bookingId, status }) => {
+      if (!supabase) throw new Error('Supabase not configured');
       const { data, error } = await supabase
         .from('grinly_bookings')
         .update({ status, updated_at: new Date().toISOString() })

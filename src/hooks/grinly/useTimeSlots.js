@@ -5,6 +5,7 @@ export function useTimeSlots(clinicId) {
   return useQuery({
     queryKey: ['timeSlots', clinicId],
     queryFn: async () => {
+      if (!supabase) throw new Error('Supabase not configured');
       const { data, error } = await supabase
         .from('grinly_time_slots')
         .select('*')

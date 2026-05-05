@@ -5,6 +5,7 @@ export function useClinic(slug) {
   return useQuery({
     queryKey: ['clinic', slug],
     queryFn: async () => {
+      if (!supabase) throw new Error('Supabase not configured');
       const { data, error } = await supabase
         .from('grinly_clinics')
         .select('*')
