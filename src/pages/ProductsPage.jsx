@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import {
   ArrowRight, CheckCircle, Smartphone, Globe, Apple, Building2, Dog,
   Zap, MessageSquare, DollarSign, QrCode, BookOpen, AlertTriangle,
-  ShoppingBag, Camera,
+  ShoppingBag, Camera, Smile,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -119,6 +119,18 @@ const PRODUCT_CARDS = [
     tags: ['Travel', 'iOS App', 'Tourism'],
     href: '/products/traveo',
     accent: '#D94045',
+    external: false,
+  },
+  {
+    emoji: '😁',
+    name: 'Grinly',
+    tagline: 'The dental marketplace that pays patients to show up.',
+    status: 'Pilot — GTA',
+    statusColor: '#06B6D4',
+    platforms: ['Web', 'Mobile Web'],
+    tags: ['Dental', 'Marketplace', 'Toronto'],
+    href: '/products/grinly',
+    accent: '#06B6D4',
     external: false,
   },
 ];
@@ -592,6 +604,89 @@ const ProductsPage = () => {
                     ].map((b) => (
                       <div key={b} className="flex items-start gap-3">
                         <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#D94045' }} />
+                        <span className="text-gray-400 text-sm">{b}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════
+            GRINLY
+        ════════════════════════════════════════════════════════════ */}
+        <section className="py-20 bg-carbon-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollReveal>
+              <div className="flex items-center gap-4 mb-12">
+                <div className="flex-1 h-px bg-white/[0.06]" />
+                <span className="text-xs font-mono uppercase tracking-widest text-gray-600">Also from Limeshot Digital</span>
+                <div className="flex-1 h-px bg-white/[0.06]" />
+              </div>
+
+              <div className="card-dark overflow-hidden" style={{ borderLeft: '4px solid #06B6D4' }}>
+                <div className="p-10 grid lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
+                        style={{ background: '#06B6D415', border: '1px solid #06B6D430' }}>
+                        😁
+                      </div>
+                      <div>
+                        <h2 className="text-3xl font-heading font-bold text-white">Grinly</h2>
+                        <p className="text-sm font-mono" style={{ color: '#06B6D4' }}>Web · Pilot in GTA</p>
+                      </div>
+                    </div>
+
+                    <p className="text-xl text-gray-300 leading-relaxed mb-4">
+                      The dental marketplace that pays patients to show up.
+                    </p>
+                    <p className="text-gray-400 leading-relaxed mb-6">
+                      Patients book local dentists for free and earn a $25 gift card on arrival.
+                      Dentists pay a flat $199 only when the patient walks in — zero risk, zero upfront cost.
+                    </p>
+
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+                      style={{ background: '#06B6D415', border: '1px solid #06B6D430' }}>
+                      <Smile className="w-3.5 h-3.5" style={{ color: '#06B6D4' }} />
+                      <span className="text-sm font-mono" style={{ color: '#06B6D4' }}>Pilot — Greater Toronto Area</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {['Performance-Based', 'Dental Marketplace', 'Gift Cards', 'GTA Pilot'].map((tag) => (
+                        <span key={tag} className="tech-pill">{tag}</span>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      <Link to="/products/grinly" className="btn-ghost text-sm"
+                        style={{ borderColor: '#06B6D450', color: '#06B6D4' }}>
+                        View Full Page
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                      <Link to="/grinly/clinics"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-carbon-950 transition-opacity hover:opacity-90"
+                        style={{ background: '#06B6D4' }}>
+                        Find a Dentist
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    {[
+                      'Book a dentist in under 60 seconds — no account needed',
+                      '$25 gift card delivered within 24h of your visit',
+                      'Dentists pay $199 flat only on patient arrival',
+                      'Performance-based: zero cost for no-shows or clicks',
+                      'Real-time clinic dashboard for booking management',
+                      'PIPEDA-compliant patient data handling',
+                      'Pilot pricing: $99/patient for founding clinics',
+                    ].map((b) => (
+                      <div key={b} className="flex items-start gap-3">
+                        <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#06B6D4' }} />
                         <span className="text-gray-400 text-sm">{b}</span>
                       </div>
                     ))}

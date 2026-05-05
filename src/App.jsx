@@ -12,6 +12,12 @@ import TermsOfService from './pages/TermsOfService';
 import TraveoPage from './pages/TraveoPage';
 import TraveoPrivacyPolicy from './pages/TraveoPrivacyPolicy';
 import TraveoTermsOfService from './pages/TraveoTermsOfService';
+import GrinlyPage from './pages/GrinlyPage';
+import ClinicsPage from './pages/grinly/ClinicsPage';
+import ClinicDetailPage from './pages/grinly/ClinicDetailPage';
+import BookingPage from './pages/grinly/BookingPage';
+import DashboardPage from './pages/grinly/DashboardPage';
+import AuthPage from './pages/grinly/AuthPage';
 import LocalFlowWidget from './components/ui/LocalFlowWidget';
 
 const ORG_SCHEMA = {
@@ -76,7 +82,17 @@ function App() {
           <Route path="/products/traveo" element={<TraveoPage />} />
           <Route path="/products/traveo/privacy" element={<TraveoPrivacyPolicy />} />
           <Route path="/products/traveo/terms" element={<TraveoTermsOfService />} />
+          <Route path="/products/grinly" element={<GrinlyPage />} />
         </Route>
+      </Routes>
+
+      {/* Grinly app routes — use GrinlyLayout instead of limeshot Layout */}
+      <Routes>
+        <Route path="/grinly/clinics" element={<ClinicsPage />} />
+        <Route path="/grinly/clinics/:slug" element={<ClinicDetailPage />} />
+        <Route path="/grinly/book/:slug" element={<BookingPage />} />
+        <Route path="/grinly/dashboard" element={<DashboardPage />} />
+        <Route path="/grinly/auth" element={<AuthPage />} />
       </Routes>
       <LocalFlowWidget />
     </>
